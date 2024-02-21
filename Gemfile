@@ -49,7 +49,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
 
   # Use Rspec for specs
-  gem 'rspec', '~> 3.4'
+  gem 'rspec-rails', '~> 6.1.0'
 end
 
 group :development do
