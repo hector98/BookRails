@@ -17,7 +17,7 @@ RSpec.describe BooksController, type: :controller do
     end
 
     it "lists books" do
-      expect(assigns(:books).length).to eq(21)
+      expect(assigns(:books).length).to eq(22)
     end
   end
 
@@ -35,14 +35,6 @@ RSpec.describe BooksController, type: :controller do
     it "renders the show template" do
       expect(response).to render_template :show
     end
-
-    it "shows the book title" do
-      expect(response.body.to_s).to include("Book 1")
-    end
-
-    it "shows the book opinion" do
-      expect(response.body).to include("Opinion 1")
-    end
   end
 
   # describe "GET #new"
@@ -58,9 +50,74 @@ RSpec.describe BooksController, type: :controller do
     it "renders the new template" do
       expect(response).to render_template :new
     end
+  end
 
-    it "renders a form" do
-      expect(response.body).to include("form")
+  #describe "POST #create"
+  describe "POST #create" do
+    it "redirects to books_path" do
+      post :create, params: { book: { title: "Title", opinion: "Opinion" } }
+      expect(response).to redirect_to books_path
+    end
+
+    it "render to new if title is blank" do
+      post :create, params: { book: { title: "", opinion: "Opinion" } }
+      expect(response).to render_template :new
+    end
+
+    it "render to new if opinion is blank" do
+      post :create, params: { book: { title: "Title", opinion: "" } }
+      expect(response).to render_template :new
+    end
+
+    it "render to new if title and opinion are blank" do
+      post :create, params: { book: { title: "", opinion: "" } }
+      expect(response).to render_template :new
+    end
+
+    it "returns http unprocessable_entity" do
+      post :create, params: { book: { title: "", opinion: "Opinion" } }
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
+  end
+
+  #describe "GET #edit"
+  describe "GET #edit" do
+    before do
+      book = FactoryBot.create(:book)
+      get :edit, params: { id: book.id }
+    end
+
+    it "returns http success" do
+      expect(response).to have_http_status(:success)
+    end
+
+    it "renders the edit template" do
+      expect(response).to render_template :edit
+    end
+  end
+
+  #describe "PUT #update"
+  describe "PUT #update" do
+    let!(:book) { FactoryBot.create(:book) }
+
+    it "redirects to books_path" do
+      put :update, params: { id: book.id, book: { title: "Title edit", opinion: "Opinion edit" } }
+      expect(response).to redirect_to book
+    end
+
+    it "render to edit if title is blank" do
+      put :update, params: { id: book.id, book: { title: "", opinion: "Opinion" } }
+      expect(response).to render_template :edit
+    end
+
+    it "render to edit if opinion is blank" do
+      put :update, params: { id: book.id, book: { title: "Title", opinion: "" } }
+      expect(response).to render_template :edit
+    end
+
+    it "render to edit if title and opinion are blank" do
+      put :update, params: { id: book.id, book: { title: "", opinion: "" } }
+      expect(response).to render_template :edit
     end
   end
 

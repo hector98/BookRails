@@ -1,5 +1,11 @@
 <%= form_for book do |f| %>
   <div>
+    <% book.errors.full_messages.each do |error| %>
+      <p><%= error %></p>
+    <% end %>
+  </div>
+
+  <div>
     <%= f.label :title %>:
     <%= f.text_field :title %>
   </div>

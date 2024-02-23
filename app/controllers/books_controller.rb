@@ -14,9 +14,9 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      redirect_to books_path
+      redirect_to books_path, notice: "Tu libro fue creado con éxito"
     else
-      render :new
+      render :new, status: :unprocessable_entity, alert: "No se pudo crear el libro"
     end
   end
 
@@ -25,11 +25,10 @@ class BooksController < ApplicationController
   end
 
   def update
-    book
     if book.update(book_params)
-      redirect_to books_path
+      redirect_to book, notice: "Tu libro fue actualizado con éxito"
     else
-      render :edit
+      render :edit, status: :unprocessable_entity, alert: "No se pudo actualizar el libro"
     end
   end
 
