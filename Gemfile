@@ -50,6 +50,9 @@ group :development, :test do
 
   # Use Rspec for specs
   gem 'rspec-rails', '~> 6.1.0'
+  gem "factory_bot_rails"
+  gem "faker"
+  gem "rails-controller-testing"
 end
 
 group :development do
