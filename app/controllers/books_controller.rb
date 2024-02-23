@@ -32,6 +32,14 @@ class BooksController < ApplicationController
     end
   end
 
+  def destroy
+    if book.destroy
+      redirect_to books_path, notice: "Tu libro fue eliminado con éxito"
+    else
+      redirect_to book, status: :unprocessable_entity, alert: "No se pudo eliminar el libro"
+    end
+  end
+
   private
   def book
     @book ||= Book.find(params[:id])

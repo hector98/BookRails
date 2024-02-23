@@ -121,4 +121,19 @@ RSpec.describe BooksController, type: :controller do
     end
   end
 
+  #describe "DELETE #destroy"
+  describe "DELETE #destroy" do
+    let!(:book) { FactoryBot.create(:book) }
+
+    it "redirects to books_path" do
+      delete :destroy, params: { id: book.id }
+      expect(response).to redirect_to books_path
+    end
+
+    it "returns http success" do
+      delete :destroy, params: { id: book.id }
+      expect(response).to have_http_status(:success)
+    end
+  end
+
 end
