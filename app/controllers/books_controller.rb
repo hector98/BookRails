@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.all
+    @books = Book.all.with_attached_image
   end
 
   def show
@@ -14,9 +14,9 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      redirect_to books_path, notice: "Tu libro fue creado con éxito"
+      redirect_to books_path, notice: t('.created')
     else
-      render :new, status: :unprocessable_entity, alert: "No se pudo crear el libro"
+      render :new, status: :unprocessable_entity, alert: t('.failed')
     end
   end
 
@@ -26,17 +26,17 @@ class BooksController < ApplicationController
 
   def update
     if book.update(book_params)
-      redirect_to book, notice: "Tu libro fue actualizado con éxito"
+      redirect_to book, notice: t('.updated')
     else
-      render :edit, status: :unprocessable_entity, alert: "No se pudo actualizar el libro"
+      render :edit, status: :unprocessable_entity, alert: t('.failed')
     end
   end
 
   def destroy
     if book.destroy
-      redirect_to books_path, notice: "Tu libro fue eliminado con éxito"
+      redirect_to books_path, notice: t('.destroyed')
     else
-      redirect_to book, status: :unprocessable_entity, alert: "No se pudo eliminar el libro"
+      redirect_to book, status: :unprocessable_entity, alert: t('.failed')
     end
   end
 

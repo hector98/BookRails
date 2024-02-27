@@ -1,0 +1,27 @@
+es:
+  active_record:
+    models:
+      book: "Libro"
+    attributes:
+      book:
+        title: "Titulo del libro"
+        opinion: "Opinio del libro"
+        image: "Imagen del libro"
+  common:
+    confirm: "¿Estás seguro?"
+  books:
+    edit:
+      title: "Editar libro"
+    new:
+      title: "Nuevo libro"
+    index:
+      title: "Libros"
+    create:
+      created: "Tu libro ha sido creado."
+      failed: "Tu libro no pudo ser creado."
+    update:
+      updated: "Tu libro ha sido actualizado."
+      failed: "Tu libro no pudo ser actualizado."
+    destroy:
+      destroyed: "Tu libro ha sido eliminado."
+      failed: "Tu libro no pudo ser eliminado."

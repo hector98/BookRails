@@ -2,4 +2,4 @@
 <%= image_tag @book.image, width: 300 if @book.image.attached? %>
 <p class="opinion"><%= @book.opinion %></p>
 <%= link_to "Edit", edit_book_path(@book) %>
-<%= link_to "Delete", book_path(@book), data: { turbo_method: :delete, turbo_confirm: "Estas seguro de eliminar este libro?" } %>
+<%= link_to "Delete", book_path(@book), data: { turbo_method: :delete, turbo_confirm: t("common.confirm") } %>

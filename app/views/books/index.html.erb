@@ -1,9 +1,3 @@
-<h1> Books </h1>
+<h1> <%= t(".title") %> </h1>
 
-<% @books.each do |book| %>
-  <%= link_to book_path(book) do %>
-    <h3><%= book.title %></h3>
-    <%= image_tag book.image, width: 150 if book.image.attached? %>
-    <p><%= book.opinion %></p>
-  <% end %>
-<% end %>
+<%= render partial: 'book', collection: @books, locals: { book: @book } %>

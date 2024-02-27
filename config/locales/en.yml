@@ -28,4 +28,30 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  active_record:
+    models:
+      book: "Book"
+    attributes:
+      book:
+        title: "Title of the book"
+        opinion: "Opinion of the book"
+        image: "Image of the book"
+        submit: "Create book"
+  common:
+    confirm: "Are you sure?"
+  books:
+    edit:
+      title: "Edit book"
+    new:
+      title: "New book"
+    index:
+      title: "Books"
+    create:
+      created: "Your book has been created."
+      failed: "Your book could not be created."
+    update:
+      updated: "Your book has been updated."
+      failed: "Your book could not be updated."
+    destroy:
+      destroyed: "Your book has been deleted."
+      failed: "Your book could not be deleted."

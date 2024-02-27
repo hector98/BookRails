@@ -1,0 +1,6 @@
+
+<%= link_to book_path(book) do %>
+  <h3><%= book.title %></h3>
+  <%= image_tag book.image, width: 150 if book.image.attached? %>
+  <p><%= book.opinion %></p>
+<% end %>
